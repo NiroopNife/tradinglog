@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:trading_log/theme/app_bar_theme.dart';
-import 'package:trading_log/theme/app_text_theme.dart';
-import 'package:trading_log/theme/text_form_field_theme.dart';
+import 'package:trading_log/core/utils/theme/app_bar_theme.dart';
+import 'package:trading_log/core/utils/theme/app_text_theme.dart';
+import 'package:trading_log/core/utils/theme/text_form_field_theme.dart';
 
 class AppTheme {
   AppTheme._();
