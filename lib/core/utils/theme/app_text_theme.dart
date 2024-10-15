@@ -45,7 +45,7 @@ class AppTextTheme {
       color: Colors.black,
     ),
     bodySmall: const TextStyle().copyWith(
-      fontSize: 14.0,
+      fontSize: 12.0,
       fontWeight: FontWeight.w500,
       color: Colors.black.withOpacity(0.5),
     ),

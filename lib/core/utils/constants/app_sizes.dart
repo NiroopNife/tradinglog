@@ -43,6 +43,9 @@ class AppSizes {
   // Divider height
   static const double dividerHeight = 1.0;
 
+  // Border Width
+  static const double borderWidth = 2.0;
+  
   // Input field
   static const double inputFieldRadius = 12.0;
   static const double spaceBtwInputFields = 16.0;

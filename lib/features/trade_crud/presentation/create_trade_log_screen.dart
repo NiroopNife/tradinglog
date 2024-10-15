@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:trading_log/core/utils/constants/constants.dart';
+import 'package:trading_log/core/utils/utils.dart';
+import 'package:trading_log/core/widgets/widgets.dart';
+import 'package:trading_log/features/trade_crud/presentation/widgets/widgets.dart';
 
 class CreateTradeLogScreen extends ConsumerStatefulWidget {
   static CreateTradeLogScreen builder(
@@ -15,68 +19,128 @@ class CreateTradeLogScreen extends ConsumerStatefulWidget {
 
 class _CreateTradeLogScreenState extends ConsumerState<CreateTradeLogScreen> {
   final _formKey = GlobalKey<FormState>();
-  late String name;
-  late String category;
-  late String status;
-  String? imagePath;
+  final _symbolController = TextEditingController();
+  final _entryDateTimeController = TextEditingController();
+  final _entryQuantityController = TextEditingController();
+  final _entryPriceController = TextEditingController();
+  final _entryNoteController = TextEditingController();
+  final _exitDateTimeController = TextEditingController();
+  final _exitQuantityController = TextEditingController();
+  final _exitPriceController = TextEditingController();
+  final _exitNoteController = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-    name = '';
-    category = '';
-    status = 'Active';
+  bool _isEntryExpanded = false;
+  bool _isExitExpanded = false;
+
+  void _toggleEntryExpansion(int index) {
+    setState(() {
+      _isEntryExpanded = !_isEntryExpanded;
+    });
+  }
+
+  void _toggleExitExpansion(int index) {
+    setState(() {
+      _isExitExpanded = !_isExitExpanded;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
+      floatingActionButton: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(AppSizes.lg),
+          shape: BoxShape.rectangle,
+          color: AppColors.accent,
+        ),
+        child: TextButton(
+          onPressed: () {
+            if (_formKey.currentState!.validate()) {
+              _formKey.currentState!.save();
+            }
+          },
+          style: TextButton.styleFrom(
+            padding: const EdgeInsets.all(AppSizes.md),
+          ),
+          child: const Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.save, color: AppColors.white),
+              SizedBox(width: 4),
+              Text(AppTexts.save, style: TextStyle(color: AppColors.white, fontSize: AppSizes.fontSizeMd)),
+            ],
+          ),
+        ),
+      ),
       body: Form(
         key: _formKey,
         child: ListView(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(AppSizes.md),
           children: [
-            TextFormField(
-              initialValue: name,
-              decoration: const InputDecoration(labelText: 'Name'),
+            CustomTextFormField(
+              controller: _symbolController,
+              labelText: AppTexts.symbol,
               validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter a name';
-                }
-                return null;
+                return Validators.validateField(value);
               },
-              onSaved: (value) => name = value!,
+              suggestionText: AppTexts.symbolExample,
             ),
-            const SizedBox(height: 16),
-            Text('Status:', style: Theme.of(context).textTheme.headlineSmall),
-            RadioListTile<String>(
-              title: const Text('Active'),
-              value: 'Active',
-              groupValue: status,
-              onChanged: (value) => setState(() => status = value!),
-            ),
-            RadioListTile<String>(
-              title: const Text('Inactive'),
-              value: 'Inactive',
-              groupValue: status,
-              onChanged: (value) => setState(() => status = value!),
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text('Select Image'),
-            ),
-            if (imagePath != null) Image.asset(imagePath!, height: 100),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  _formKey.currentState!.save();
-                }
+            const Gap(height: AppSizes.md),
+            const TradeTypeFields(),
+            const Gap(height: AppSizes.md),
+            ExpansionPanelList(
+              elevation: 0,
+              expansionCallback: (int index, bool isExpanded) {
+                _toggleEntryExpansion(index);
               },
-              child: const Text('Add'),
+              children: [
+                ExpansionPanel(
+                  headerBuilder: (BuildContext context, bool isExpanded) {
+                    return const ListTile(
+                      title: Text(AppTexts.entryDetails),
+                    );
+                  },
+                  body: EntryExitCard(
+                    type: TradeType.entry,
+                    dateTimeController: _entryDateTimeController,
+                    quantityController: _entryQuantityController,
+                    priceController: _entryPriceController,
+                    noteController: _entryNoteController,
+                  ),
+                  backgroundColor: AppColors.white,
+                  isExpanded: _isEntryExpanded,
+                ),
+              ],
             ),
+            const Gap(height: AppSizes.md),
+            ExpansionPanelList(
+              elevation: 0,
+              expansionCallback: (int index, bool isExpanded) {
+                _toggleExitExpansion(index);
+              },
+              children: [
+                ExpansionPanel(
+                  headerBuilder: (BuildContext context, bool isExpanded) {
+                    return const ListTile(
+                      title: Text(AppTexts.exitDetails),
+                    );
+                  },
+                  body: EntryExitCard(
+                    type: TradeType.exit,
+                    dateTimeController: _exitDateTimeController,
+                    quantityController: _exitQuantityController,
+                    priceController: _exitPriceController,
+                    noteController: _exitNoteController,
+                  ),
+                  backgroundColor: AppColors.white,
+                  isExpanded: _isExitExpanded,
+                ),
+              ],
+            ),
+            const Gap(height: AppSizes.md),
+            const AddImage(imageName: AppImages.candleStricks),
+            const Gap(height: AppSizes.md),
           ],
         ),
       ),
