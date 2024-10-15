@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trading_log/core/utils/constants/app_colors.dart';
-import 'package:trading_log/core/utils/constants/app_sizes.dart';
-import 'package:trading_log/core/utils/constants/app_texts.dart';
+import 'package:trading_log/core/utils/utils.dart';
 
 class AddImage extends StatelessWidget {
   final String imageName;
