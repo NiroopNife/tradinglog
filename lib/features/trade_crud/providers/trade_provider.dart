@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
-import 'package:trading_log/core/utils/constants/app_texts.dart';
 import 'package:trading_log/data/models/trade_model.dart';
 
 final tradesProvider = StateNotifierProvider<TradeNotifier, List<TradeModel>>(
