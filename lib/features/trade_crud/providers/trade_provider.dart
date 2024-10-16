@@ -15,12 +15,12 @@ class TradeNotifier extends StateNotifier<List<TradeModel>> {
   }
 
   Future<void> _loadTrades() async {
-    final box = Hive.box<TradeModel>(AppTexts.tradesBox);
+    final box = Hive.box<TradeModel>('trades');
     state = box.values.toList();
   }
 
   Future<void> addTrade(TradeModel trade) async {
-    final box = Hive.box<TradeModel>(AppTexts.tradesBox);
+    final box = Hive.box<TradeModel>('trades');
     await box.add(trade);
     state = [...state, trade];
   }

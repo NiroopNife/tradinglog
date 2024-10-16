@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trading_log/core/utils/utils.dart';
+import 'package:trading_log/data/repositories/hive_setup.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await initHive();
   runApp(const ProviderScope(
     child: TradingLogApp(),
   ));

@@ -31,7 +31,7 @@ class QuantityPriceField extends StatelessWidget {
         Expanded(
           flex: 2,
           child: CustomTextFormField(
-            controller: quantityController,
+            controller: priceController,
             hintText: AppTexts.price,
             keyboardType: TextInputType.number,
           ),

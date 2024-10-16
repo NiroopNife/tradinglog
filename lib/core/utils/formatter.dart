@@ -10,4 +10,9 @@ class Formatter {
     dateTime ??= DateTime.now();
     return DateFormat('d MMMM y hh:mm a').format(dateTime);
   }
+
+  static DateTime unFormatDateTime(String dateTime) {
+    DateFormat format = DateFormat('d MMMM y hh:mm a');
+    return format.parse(dateTime);
+  }
 }

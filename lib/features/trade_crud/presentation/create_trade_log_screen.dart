@@ -4,7 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:trading_log/core/utils/constants/constants.dart';
 import 'package:trading_log/core/utils/utils.dart';
 import 'package:trading_log/core/widgets/widgets.dart';
+import 'package:trading_log/data/models/trade_model.dart';
 import 'package:trading_log/features/trade_crud/presentation/widgets/widgets.dart';
+import 'package:trading_log/features/trade_crud/providers/trade_provider.dart';
 
 class CreateTradeLogScreen extends ConsumerStatefulWidget {
   static CreateTradeLogScreen builder(
@@ -58,6 +60,18 @@ class _CreateTradeLogScreenState extends ConsumerState<CreateTradeLogScreen> {
           onPressed: () {
             if (_formKey.currentState!.validate()) {
               _formKey.currentState!.save();
+              final trade = TradeModel(
+                  symbol: _symbolController.text,
+                  entryDateTime:
+                      Formatter.unFormatDateTime(_entryDateTimeController.text),
+                  entryQuantity: _entryQuantityController.text,
+                  entryPrice: _entryPriceController.text,
+                  exitDateTime:
+                      Formatter.unFormatDateTime(_exitDateTimeController.text),
+                  exitQuantity: _exitQuantityController.text,
+                  exitPrice: _exitPriceController.text);
+                  ref.read(tradesProvider.notifier).addTrade(trade);
+                  context.go(RouteLocation.allTradeLogs);
             }
           },
           style: TextButton.styleFrom(
@@ -68,7 +82,9 @@ class _CreateTradeLogScreenState extends ConsumerState<CreateTradeLogScreen> {
             children: [
               Icon(Icons.save, color: AppColors.white),
               SizedBox(width: 4),
-              Text(AppTexts.save, style: TextStyle(color: AppColors.white, fontSize: AppSizes.fontSizeMd)),
+              Text(AppTexts.save,
+                  style: TextStyle(
+                      color: AppColors.white, fontSize: AppSizes.fontSizeMd)),
             ],
           ),
         ),

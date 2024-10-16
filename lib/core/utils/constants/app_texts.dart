@@ -70,7 +70,4 @@ class AppTexts {
   static const String addExit = 'Add Exit';
   static const String addImage = 'Add Image';
   static const String save = 'Save';
-
-  // Hive
-  static const String tradesBox = 'trades';
 }
