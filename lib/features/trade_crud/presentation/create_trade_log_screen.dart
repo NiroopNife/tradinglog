@@ -49,7 +49,9 @@ class _CreateTradeLogScreenState extends ConsumerState<CreateTradeLogScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text(AppTexts.addTrade),
+      ),
       floatingActionButton: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppSizes.lg),

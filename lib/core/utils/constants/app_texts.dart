@@ -4,7 +4,14 @@ class AppTexts {
   AppTexts._();
 
   // Page Titles
-  static const String addJournal = 'Add Journal';
+  static const String addTrade = 'Add Trade';
+
+  // Misc
+  static const String noTrades = 'No trade log at the moment';
+  static const String entryQuantity = 'Entry Quantity';
+  static const String exitQuantity = 'Exit Quantity';
+  static const String avgPrice = 'Avg. Price';
+  static const String invested = 'Invested';
 
   // Formfield texts
   static const String entryDate = 'Entry Date';

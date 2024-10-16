@@ -16,4 +16,8 @@ class AppHelper {
   static double screenWidth(BuildContext context) {
     return MediaQuery.of(context).size.width;
   }
+
+  static double totalInvested(String quantity, String price) {
+    return double.parse(quantity) * double.parse(price);
+  }
 }
