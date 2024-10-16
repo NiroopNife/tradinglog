@@ -19,7 +19,7 @@ class AllTradesLogsScreen extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          context.go(RouteLocation.createTradeLog);
+          context.push(RouteLocation.createTradeLog);
         },
         child: const Icon(Icons.add),
       ),
