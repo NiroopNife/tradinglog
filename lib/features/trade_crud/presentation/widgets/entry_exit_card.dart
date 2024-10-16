@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:trading_log/core/utils/constants/constants.dart';
 import 'package:trading_log/core/utils/utils.dart';
 import 'package:trading_log/core/widgets/widgets.dart';
 import 'package:trading_log/data/models/menu_item.dart';
