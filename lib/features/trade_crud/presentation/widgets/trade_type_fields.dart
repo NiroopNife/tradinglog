@@ -15,7 +15,7 @@ class TradeTypeFields extends StatelessWidget {
           child: DropdownMenu<MenuItem>(
             requestFocusOnTap: true,
             enableFilter: true,
-            label: const Text(AppTexts.segment),
+            hintText: AppTexts.segment,
             onSelected: (MenuItem? menu) {},
             dropdownMenuEntries: AppTexts.segments
                 .map<DropdownMenuEntry<MenuItem>>((MenuItem menu) {
@@ -31,7 +31,7 @@ class TradeTypeFields extends StatelessWidget {
           child: DropdownMenu<MenuItem>(
             requestFocusOnTap: true,
             enableFilter: true,
-            label: const Text(AppTexts.tradeType),
+            hintText:AppTexts.tradeType,
             onSelected: (MenuItem? menu) {},
             dropdownMenuEntries: AppTexts.typesOfTrade
                 .map<DropdownMenuEntry<MenuItem>>((MenuItem menu) {

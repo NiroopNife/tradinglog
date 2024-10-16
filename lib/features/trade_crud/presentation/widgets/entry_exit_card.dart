@@ -32,7 +32,7 @@ class EntryExitCard extends StatelessWidget {
       children: [
         CustomTextFormField(
           controller: dateTimeController,
-          labelText:
+          hintText:
               type == TradeType.entry ? AppTexts.addEntry : AppTexts.addExit,
           validator: (value) {
             return Validators.validateField(value);
@@ -53,9 +53,9 @@ class EntryExitCard extends StatelessWidget {
           requestFocusOnTap: true,
           enableFilter: true,
           width: AppHelper.screenWidth(context) * .93,
-          label: Text(type == TradeType.entry
+          hintText: type == TradeType.entry
               ? AppTexts.entryCondition
-              : AppTexts.exitCondition),
+              : AppTexts.exitCondition,
           onSelected: (MenuItem? menu) {},
           dropdownMenuEntries:
               conditions.map<DropdownMenuEntry<MenuItem>>((MenuItem menu) {
@@ -74,7 +74,7 @@ class EntryExitCard extends StatelessWidget {
         const Gap(height: AppSizes.md),
         CustomTextFormField(
           controller: noteController,
-          labelText:
+          hintText:
               type == TradeType.entry ? AppTexts.entryNote : AppTexts.exitNote,
         ),
       ],

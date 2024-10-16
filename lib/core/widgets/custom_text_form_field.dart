@@ -5,6 +5,7 @@ import 'gap.dart';
 class CustomTextFormField extends StatelessWidget {
   final TextEditingController controller;
   final String? labelText;
+  final String? hintText;
   final int? minLines;
   final int? maxLines;
   final TextInputType keyboardType;
@@ -20,6 +21,7 @@ class CustomTextFormField extends StatelessWidget {
     super.key,
     required this.controller,
     this.labelText,
+    this.hintText,
     this.minLines = 1,
     this.maxLines,
     this.keyboardType = TextInputType.text,
@@ -44,6 +46,7 @@ class CustomTextFormField extends StatelessWidget {
           style: const TextTheme().bodySmall,
           keyboardType: keyboardType,
           decoration: InputDecoration(
+            hintText: hintText,
             labelText: labelText,
             prefixIcon: prefixIcon,
             suffixIcon: suffixIcon != null

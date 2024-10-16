@@ -80,7 +80,7 @@ class _CreateTradeLogScreenState extends ConsumerState<CreateTradeLogScreen> {
           children: [
             CustomTextFormField(
               controller: _symbolController,
-              labelText: AppTexts.symbol,
+              hintText: AppTexts.symbol,
               validator: (value) {
                 return Validators.validateField(value);
               },

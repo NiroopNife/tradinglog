@@ -24,7 +24,7 @@ class QuantityPriceField extends StatelessWidget {
           flex: 2,
           child: CustomTextFormField(
             controller: quantityController,
-            labelText: AppTexts.quantity,
+            hintText: AppTexts.quantity,
           ),
         ),
         const Gap(width: AppSizes.md),
@@ -32,7 +32,7 @@ class QuantityPriceField extends StatelessWidget {
           flex: 2,
           child: CustomTextFormField(
             controller: quantityController,
-            labelText: AppTexts.price,
+            hintText: AppTexts.price,
             keyboardType: TextInputType.number,
           ),
         ),
